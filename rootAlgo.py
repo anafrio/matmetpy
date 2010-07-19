@@ -31,7 +31,8 @@ def ScaNewRapSolve(fun, x0, funD = None, tol=0.5e-5, miniter = 1, maxiter=100, h
         i = i+1
         #print '[ScaNewRapSolve] Iteration ', str(i),', newx = ', str(newx),', funEva = ', str(funEva)
     if i == maxiter:
-        raise ValueError, '[ScaNewRapSolve] Convergence not attained for the initial value, tolerance and maxiter given'
+        Warning('[ScaNewRapSolve] Convergence not attained for the initial value, tolerance and maxiter given')
+        return None
     else:
         return newx
     
@@ -78,6 +79,7 @@ def VecNewRapSolve(funVec, X0, funjac = None, tol=0.1e-5, miniter = 1, maxiter=1
                 if abs(funVecEva[j]) > tol:
                     tolerr = True
     if i == maxiter:
-        raise ValueError, '[VecNewRapSolve] Convergence not attained for the initial value, tolerance and maxiter given'
+        Warning('[VecNewRapSolve] Convergence not attained for the initial value, tolerance and maxiter given')
+        return None
     else:
         return newX
