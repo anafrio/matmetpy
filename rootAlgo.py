@@ -62,7 +62,8 @@ def VecNewRapSolve(funVec, X0, funjac = None, tol=0.1e-5, miniter = 1, maxiter=1
     # Iterate for i less than maxiter and funVec(X)>tol
     while(i<miniter or (i<maxiter and tolerr)):
         if scipy.linalg.det(jacEva) == 0.:
-            raise ValueError, '[VecNewRapSolve] Non invertible jacobian encountered. Try a different initial value'
+            Warning('[VecNewRapSolve] Non invertible jacobian encountered. Try a different initial value')
+            return None
         else:
             invJac = scipy.linalg.inv(jacEva)
             newXlast = newX
