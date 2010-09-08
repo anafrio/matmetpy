@@ -61,6 +61,11 @@ def VecNewRapSolve(funVec, X0, funjac = None, tol=0.1e-5, miniter = 1, maxiter=1
     i=0
     # Iterate for i less than maxiter and funVec(X)>tol
     while(i<miniter or (i<maxiter and tolerr)):
+        for j in range(len(jacEva)):
+            for k in range(len(jacEva)):
+                if str(jacEva[j][k])=='' or str(jacEva[j][k])=='nan':
+                    Warning('[VecNewRapSolve] Undefined jacobian encountered. Try with different values')
+                    return None
         if scipy.linalg.det(jacEva) == 0.:
             Warning('[VecNewRapSolve] Non invertible jacobian encountered. Try a different initial value')
             return None
